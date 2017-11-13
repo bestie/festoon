@@ -86,7 +86,6 @@ composed_object.__decompose__
 * `#inspect` method which has readable output and does not attempt to hide the
 object's composed nature. Potentially offer a set of strategies for this
 * Recursive `#dup`?
-* Hash equality
 * Rename `@thing`
 
 ## Installation
