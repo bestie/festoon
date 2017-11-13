@@ -10,14 +10,14 @@ super classes and modules akin to the standard library's `SimpleDelegator`.
 Personally I've felt the delegation tools in the standard library to be lacking
 in functionality, often difficult to use in practice and sometimes misleading.
 
-The following is a issues I have encountered (not comprehensive)
+The following are issues I have encountered (not comprehensive)
 
-* Delegation of `#inspect` causing the SimpleDelegator to masquerade as the
+* Delegation of `#inspect` causing the `SimpleDelegator` to masquerade as the
 object it decorates.
 * Comparison of decorated objects only works for coercible primitives.
 * Fluid interfaces, where the decorated object returns self, are not supported
 and cause your composed objects to unravel.
-* Difficulty in debugging with multple layers of decoration
+* Difficulty debugging multiple layers of decoration
 
 ## Examples
 
@@ -55,11 +55,11 @@ Festoon::Dynamic.new(my_object).inspect
 ### Compose and `__decompose__`
 
 `#__decompose__` returns an array, each element containing a layer of the
-composed object outermost first. This is most easily demonstrable by mapping
+composed object, outermost first. This is most easily demonstrable by mapping
 each layer to its class.
 
-This mainly exists for debugging and allow you to inspect, interact and bypass
-arbitrary layers of the composition.
+This mainly exists for debugging and allow you to inspect, interact with, and
+bypass arbitrary layers of the composition.
 
 ```ruby
 class DecoratorA < Festoon::Dynamic; end
@@ -84,7 +84,7 @@ composed_object.__decompose__
 * Method reflection methods such as `#public_methods` etc
 * Consider delegation of `#trust`, `#untrust`, `#taint`, `#untaint`, `#freeze`
 * `#inspect` method which has readable output and does not attempt to hide the
-object's composed nature. Potentially offer a set of strategies for this.
+object's composed nature. Potentially offer a set of strategies for this
 * Recursive `#dup`?
 * Hash equality
 * Rename `@thing`
