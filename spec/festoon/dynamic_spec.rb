@@ -75,7 +75,7 @@ RSpec.describe Festoon::Dynamic do
     let(:middle_wrap) { Festoon::Dynamic.new(base_object) }
     let(:top_wrap) { Festoon::Dynamic.new(middle_wrap) }
 
-    it "recursivly unwraps the composed objects into a flat array" do
+    it "recursively unwraps the composed objects into a flat array" do
       expect(top_wrap.__decompose__).to eq([top_wrap, middle_wrap, base_object])
     end
   end
