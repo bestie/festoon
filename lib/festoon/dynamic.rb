@@ -24,6 +24,15 @@ module Festoon
       end
     end
 
+    def eql?(other)
+      if other.is_a?(self.class)
+        _, other_thing = other.__decompose__
+        other_thing.eql?(thing)
+      else
+        thing.eql?(other)
+      end
+    end
+
     private
 
     def thing
