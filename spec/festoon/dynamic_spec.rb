@@ -70,6 +70,46 @@ RSpec.describe Festoon::Dynamic do
     end
   end
 
+  describe "#eql?" do
+    let(:object) { Object.new }
+    let(:other) { Object.new }
+
+    let(:composed_object) { Festoon::Dynamic.new(object) }
+
+    it "delegates hash equality to the underlying object" do
+      expect(composed_object.eql?(object)).to be(true)
+      expect(composed_object.eql?(other)).to be(false)
+    end
+
+    context "when comparing to another decorator" do
+      context "in one layer" do
+        let(:composed_similar) { Festoon::Dynamic.new(object) }
+
+        it "inverts the operation offering up its underlying object for comparison" do
+          expect(composed_object.eql?(composed_similar)).to be(true)
+        end
+      end
+
+      context "in two layers" do
+        let(:composed_object) { Festoon::Dynamic.new(Festoon::Dynamic.new(object)) }
+        let(:composed_similar) { Festoon::Dynamic.new(Festoon::Dynamic.new(object)) }
+
+        it "inverts the operation offering up its underlying object for comparison" do
+          expect(composed_object.eql?(composed_similar)).to be(true)
+        end
+      end
+
+      context "in three layers" do
+        let(:composed_object) { Festoon::Dynamic.new(Festoon::Dynamic.new(Festoon::Dynamic.new(object))) }
+        let(:composed_similar) { Festoon::Dynamic.new(Festoon::Dynamic.new(Festoon::Dynamic.new(object))) }
+
+        it "inverts the operation offering up its underlying object for comparison" do
+          expect(composed_object.eql?(composed_similar)).to be(true)
+        end
+      end
+    end
+  end
+
   describe "#__decompose__" do
     let(:base_object) { Object.new }
     let(:middle_wrap) { Festoon::Dynamic.new(base_object) }
