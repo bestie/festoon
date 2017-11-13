@@ -14,14 +14,12 @@ The following is a issues I have encountered (not comprehensive)
 
 * Delegation of `#inspect` causing the SimpleDelegator to masquerade as the
 object it decorates.
-* Comparision of decorated objects only works for coersable primitives.
+* Comparison of decorated objects only works for coercible primitives.
 * Fluid interfaces, where the decorated object returns self, are not supported
 and cause your composed objects to unravel.
 * Difficulty in debugging with multple layers of decoration
 
 ## Examples
-
-
 
 ### Equality
 
@@ -86,7 +84,7 @@ composed_object.__decompose__
 * Method reflection methods such as `#public_methods` etc
 * Consider delegation of `#trust`, `#untrust`, `#taint`, `#untaint`, `#freeze`
 * `#inspect` method which has readable output and does not attempt to hide the
-objects composed nature. Potentially offer a set of strategies for this.
+object's composed nature. Potentially offer a set of strategies for this.
 * Recursive `#dup`?
 * Hash equality
 * Rename `@thing`
